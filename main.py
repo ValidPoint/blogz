@@ -83,7 +83,7 @@ def make_post():
         db.session.commit()
 
         url = "/blog?id=" + str(new_blog.id)
-        return redirect(url)
+        return redirect("/blog")
 
 
 @app.route('/newpost', methods=['POST'])
