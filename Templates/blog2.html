@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Build A Blog</h1>
+    <form  action="http://127.0.0.1:5000/newpost" method='GET'>
+        <label>
+            New Post:
+            <br>
+            <input type="submit" value='Add Post' />
+        </label>
+    </form>
+
+    <hr />
+
+        <ul>
+            {% for post in posts %}
+                <li><a href="/blog?id={{post.id}}">{{post.title}}</a>
+                    <p>{{post.body}}</p>
+                </li>
+            {% endfor %}
+        </ul>
+
+{% endblock %}
