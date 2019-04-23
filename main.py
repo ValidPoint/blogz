@@ -78,35 +78,40 @@ def make_post():
     if request.method == 'POST':
         post_title = request.form['title']
         post_body = request.form['body']
-        new_blog = Blog(post_title, post_body)
-        db.session.add(new_blog)
-        db.session.commit()
+        #new_blog = Blog(post_title, post_body)
+        #db.session.add(new_blog)
+        #db.session.commit()
 
-        url = "/blog?id=" + str(new_blog.id)
-        return redirect("/blog")
+        #url = "/blog?id=" + str(new_blog.id)
+        #return redirect("/blog")
 
 
-@app.route('/newpost', methods=['POST'])
-def user_post():
+#@app.route('/newpost', methods=['POST'])
+#def user_post():
 
-    title = request.form['title']
-    body = request.form['body']
+    #title = request.form['title']
+    #body = request.form['body']
 
     title_error = ''
     body_error = ''
 
-    if len(title) == 0:
+    if len(post_title) == 0:
         title_error = 'No Text Found'
 
-    if len(body) == 0:
+    if len(post_body) == 0:
         body_error = 'No Text Found'
 
     if not title_error and not body_error:
-        title = request.form['title']
-        body = request.form['body']
-        return render_template('blog2.html')
+        post_title = request.form['title']
+        post_body = request.form['body']
+        new_blog = Blog(post_title, post_body)
+        db.session.add(new_blog)
+        db.session.commit()
+        url = "/blog?id=" + str(new_blog.id)
+        #return render_template('blog2.html')
+        return redirect("/blog")
     else:
-        return render_template('blog.html', title_error=title_error, body_error=body_error, title=title, body=body)
+        return render_template('blog.html', title_error=title_error, body_error=body_error, post_title=post_title, post_body=post_body)
 
 #@app.route('/newpost', methods=['POST', 'GET'])
 #def make_post():
